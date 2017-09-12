@@ -18,13 +18,18 @@ namespace WeatherDataService
     {
 
     }
-    class WeatherDataServiceException
+    class WeatherDataServiceException 
     {
 
     }
-    class WeatherDataServiceFactory
+    class WeatherDataServiceFactory : IWeatherDataService
     {
-
+        WeatherData data;
+        Location location;
+        public WeatherData GetWeatherData(Location location)
+        {
+            return data;
+        }
     }
     public enum Days
     {
@@ -45,10 +50,10 @@ namespace WeatherDataService
     }
     class Person
     {
-        private long id;
-        private string name, occupation;
-        private bool male;
-        public void setData(long idVal, string nameVal, bool maleVal = true, string occupationVal = "student")
+        protected long id;
+        protected string name, occupation;
+        protected bool male;
+        public virtual void setData(long idVal, string nameVal, bool maleVal = true, string occupationVal = "student")
         {
             id = idVal;
             name = nameVal;
@@ -60,7 +65,60 @@ namespace WeatherDataService
             return name + ", " + occupation + ", " + id + ", " + (male ? "male" : "female");
         }
     }
+    class Student : Person
+    {
+        public double Average { get; set; }
+        public void PrintAverage()
+        {
+            Console.WriteLine("average=" + this.Average);
+        }
+        public override string ToString()
+        {
+            return name + ", " + occupation + ", " + id + ", " + (male ? "male" : "female")+","+Average;
+        }
+        public override void setData(long idVal, string nameVal, bool maleVal = true, string occupationVal = "student")
+        {
+            id = idVal;
+            name = nameVal;
+            male = maleVal;
+            occupation = occupationVal;
+            Average = 89.5;
     
+        }
+    }
+    class Employee: Person
+    {
+        public double Salary { get; set; }
+        public override string ToString()
+        {
+            return name + ", " + occupation + ", " + id + ", " + (male ? "male" : "female") + "," + Salary;
+        }
+        public override void setData(long idVal, string nameVal, bool maleVal = true, string occupationVal = "employee")
+        {
+            id = idVal;
+            name = nameVal;
+            male = maleVal;
+            occupation = occupationVal;
+            Salary = 4000.35;
+        }
+    }
+    class Teacher: Student
+    {
+        public string Topic { get; set; }
+        public override string ToString()
+        {
+            return name + ", " + occupation + ", " + id + ", " + (male ? "male" : "female") + "," + Topic;
+        }
+        public override void setData(long idVal, string nameVal, bool maleVal = true, string occupationVal = "teacher")
+        {
+            id = idVal;
+            name = nameVal;
+            male = maleVal;
+            occupation = occupationVal;
+            Topic = "Biology";
+        }
+    }
+
     struct Rectangle
     {
         private double width, height;
@@ -201,6 +259,19 @@ namespace WeatherDataService
             ob.setData(idVal:12312323, nameVal:"Yair");
             Console.WriteLine(ob);
 
+            Student ob2 = new Student();
+            ob2.setData(idVal: 12312323, nameVal: "Yair");
+            Console.WriteLine(ob2);
+            ob2.PrintAverage();
+
+            Teacher teacher = new Teacher();
+            teacher.setData(idVal: 12312323, nameVal: "Yair");
+            Console.WriteLine(teacher);
+
+            Employee emp = new Employee();
+            emp.setData(idVal: 12312323, nameVal: "Yair");
+            Console.WriteLine(emp);
+
             int choice = 5;
             switch(choice)
             {
@@ -220,6 +291,7 @@ namespace WeatherDataService
             vec[0] = 12;
             vec[1] = 14;
             vec[2] = 16;
+            vec[3] = 18;
             foreach(int temp in vec)
             {
                 Console.WriteLine(temp);

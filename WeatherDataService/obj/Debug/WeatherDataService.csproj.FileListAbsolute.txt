@@ -5,3 +5,10 @@ c:\users\yair\source\repos\WeatherDataService\WeatherDataService\obj\Debug\Weath
 c:\users\yair\source\repos\WeatherDataService\WeatherDataService\obj\Debug\WeatherDataService.csproj.CoreCompileInputs.cache
 c:\users\yair\source\repos\WeatherDataService\WeatherDataService\obj\Debug\WeatherDataService.exe
 c:\users\yair\source\repos\WeatherDataService\WeatherDataService\obj\Debug\WeatherDataService.pdb
+C:\Users\yairs\source\repos\WeatherDataService\WeatherDataService\bin\Debug\WeatherDataService.exe.config
+C:\Users\yairs\source\repos\WeatherDataService\WeatherDataService\bin\Debug\WeatherDataService.exe
+C:\Users\yairs\source\repos\WeatherDataService\WeatherDataService\bin\Debug\WeatherDataService.pdb
+C:\Users\yairs\source\repos\WeatherDataService\WeatherDataService\obj\Debug\WeatherDataService.csprojResolveAssemblyReference.cache
+C:\Users\yairs\source\repos\WeatherDataService\WeatherDataService\obj\Debug\WeatherDataService.csproj.CoreCompileInputs.cache
+C:\Users\yairs\source\repos\WeatherDataService\WeatherDataService\obj\Debug\WeatherDataService.exe
+C:\Users\yairs\source\repos\WeatherDataService\WeatherDataService\obj\Debug\WeatherDataService.pdb
