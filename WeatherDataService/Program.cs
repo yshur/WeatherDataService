@@ -12,25 +12,83 @@ namespace WeatherDataService
     }
     class WeatherData
     {
-
+        public double Value { get; set; }
+        public double Min { get; set; }
+        public double Max { get; set; }
+        public string Unit { get; set; }
+        public WeatherData(double value, double min, double max, string unit)
+        {
+            this.Value = value;
+            this.Min = min;
+            this.Max = max;
+            this.Unit = unit;
+        }
     }
     class Location
     {
+        public string City { get; set; }
+        public Location(string city)
+        {
+            this.City = city;
+        }
 
     }
-    class WeatherDataServiceException 
+    class WeatherDataServiceException : System.ApplicationException
     {
 
     }
-    class WeatherDataServiceFactory : IWeatherDataService
+    class WeatherDataService : IWeatherDataService
     {
-        WeatherData data;
-        Location location;
+        private WeatherData data;
+        private string key = "8831f24c29c57a97c2f15b8fbb340ef1";
+        private static WeatherDataService WDS_Instance;
+        private WeatherDataService()
+        {
+            //SetWeatherData(d);
+
+        }
+
         public WeatherData GetWeatherData(Location location)
         {
+
             return data;
         }
+        public void SetWeatherData(WeatherData d)
+        {
+            this.data = d;
+        }
+        public static WeatherDataService Instance
+        {
+            get
+            {
+                if (WDS_Instance == null)
+                    WDS_Instance = new WeatherDataService();
+                return WDS_Instance;
+            }
+            
+        }
     }
+    class WeatherMap
+    {
+
+    }
+    abstract class WeatherDataServiceFactory
+    {
+        public abstract IWeatherDataService GetWeatherDataService(WeatherMap map);
+        
+    }
+    class OpenWeatherFactory : WeatherDataServiceFactory
+    {
+        private WeatherDataService service;
+        public static WeatherMap OPEN_WEATHER_MAP { set; get; }
+        public override IWeatherDataService GetWeatherDataService(WeatherMap map)
+        {
+            return service;
+        }
+        
+    }
+
+
     public enum Days
     {
         Sunday = 1,
@@ -210,6 +268,8 @@ namespace WeatherDataService
 
         static void Main(string[] args)
         {
+            
+
             const double sum = 100.24;
             var num = 242;
             var name = "michael";
