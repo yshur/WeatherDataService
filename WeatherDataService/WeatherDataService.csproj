@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IWeatherDataService.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="WeatherData.cs" />
+    <Compile Include="OpenWeatherDataService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
