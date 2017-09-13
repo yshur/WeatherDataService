@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace WeatherDataService
 {
@@ -268,7 +271,23 @@ namespace WeatherDataService
 
         static void Main(string[] args)
         {
-            
+            try
+            {
+                WebRequest request = WebRequest.Create("http://api.openweathermap.org/data/2.5/weather?q=israel&mode=xml&appid=8831f24c29c57a97c2f15b8fbb340ef1");
+                WebResponse response = request.GetResponse();
+                Stream data = response.GetResponseStream();
+                string result = String.Empty;
+                using (StreamReader sr = new StreamReader(data))
+                {
+                    result = sr.ReadToEnd();
+                }
+                Console.WriteLine(result);
+               
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Exception was occured");
+            }
 
             const double sum = 100.24;
             var num = 242;
