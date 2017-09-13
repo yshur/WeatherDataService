@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace WeatherDataService
 {
@@ -91,6 +92,7 @@ namespace WeatherDataService
         
     }
 
+   
 
     public enum Days
     {
@@ -273,7 +275,9 @@ namespace WeatherDataService
         {
             try
             {
-                WebRequest request = WebRequest.Create("http://api.openweathermap.org/data/2.5/weather?q=israel&mode=xml&appid=8831f24c29c57a97c2f15b8fbb340ef1");
+                
+                string location = "haifa";
+                WebRequest request = WebRequest.Create("http://api.openweathermap.org/data/2.5/weather?q="+location+"&mode=xml&appid=8831f24c29c57a97c2f15b8fbb340ef1");
                 WebResponse response = request.GetResponse();
                 Stream data = response.GetResponseStream();
                 string result = String.Empty;
@@ -282,7 +286,30 @@ namespace WeatherDataService
                     result = sr.ReadToEnd();
                 }
                 Console.WriteLine(result);
-               
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.LoadXml(result);
+                XmlReader reader = XmlReader.Create("http://api.openweathermap.org/data/2.5/weather?q=" + location + "&mode=xml&appid=8831f24c29c57a97c2f15b8fbb340ef1");
+                while(reader.Read())
+                {
+                    Console.WriteLine(reader.Name+" "+reader.Value);
+
+                }
+                StringBuilder res = new StringBuilder();
+                XDocument doc = XDocument.Load("http://api.openweathermap.org/data/2.5/weather?q=" + location + "&mode=xml&appid=8831f24c29c57a97c2f15b8fbb340ef1");
+                var variables = from variable in doc.Descendants("temparature")
+                                select new
+                                {
+                                    header = variable.Attribute("name").Value,
+                                    Children = variable.Descendants("temprature")
+                                };
+                foreach(var variable in variables)
+                {
+                    res.AppendLine(variable.header);
+                    foreach (var child in variable.Children)
+                        res.AppendLine(" " + child.Attribute("name").Value);
+                }
+
+
             }
             catch(Exception ex)
             {
