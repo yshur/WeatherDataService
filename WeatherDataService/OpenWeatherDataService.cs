@@ -41,7 +41,7 @@ namespace WeatherDataService
             try
             {
                 XDocument reader = XDocument.Load(api);
-                reader.Descendants("city").Select(p => new
+                reader.Select(p => new
                 {
                     ref location.CityId = p.Attribute("id").Value,
                     ref location.CityName = p.Attribute("name").Value,
