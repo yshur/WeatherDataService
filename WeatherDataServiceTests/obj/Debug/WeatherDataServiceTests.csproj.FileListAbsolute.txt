@@ -1,0 +1,16 @@
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\bin\Debug\WeatherDataServiceTests.dll
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\bin\Debug\WeatherDataServiceTests.pdb
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\bin\Debug\WeatherDataService.exe
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\bin\Debug\WeatherDataService.pdb
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\bin\Debug\WeatherDataService.exe.config
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\obj\Debug\WeatherDataServiceTests.csprojResolveAssemblyReference.cache
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\obj\Debug\WeatherDataServiceTests.csproj.CoreCompileInputs.cache
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\obj\Debug\WeatherDataServiceTests.dll
+C:\Users\yair\source\repos\WeatherDataService\WeatherDataServiceTests\obj\Debug\WeatherDataServiceTests.pdb

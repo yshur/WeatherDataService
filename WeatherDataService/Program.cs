@@ -19,7 +19,7 @@ namespace WeatherDataService
             try
             {
 
-                Location location = new Location(cityName: "haifa");
+                Location location = new Location(cityName: "tel-aviv");
                 WeatherDataServiceFactory factory = new WeatherDataServiceFactory();
                 IWeatherDataService dataService = factory.GetWeatherDataService("open_weather_map");
                 WeatherData weatherData = dataService.GetWeatherData(ref location);
