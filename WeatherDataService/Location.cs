@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 namespace WeatherDataService
 {
-    class Location
+    public class Location
     {
-        public long CityId { get; set; }
+        public int CityId { get; set; }
         public string CityName { get; set; }
         public double CoordLon { get; set; }
         public double CoordLat { get; set; }
         public string Country { get; set; }
-        public string SunRise { get; set; }
-        public string SunSet { get; set; }
-        public Location(long cityId)
+
+        public Location(int cityId)
         {
             this.CityId = cityId;
         }
@@ -28,15 +27,11 @@ namespace WeatherDataService
             this.CoordLon = lon;
             this.CoordLat = lat;
         }
-        public Location(long cityId, string cityName, double lon, double lat, string country, string sunRise, string sunSet)
+        public override string ToString()
         {
-            this.CityId = cityId;
-            this.CityName = cityName;
-            this.CoordLon = lon;
-            this.CoordLat = lat;
-            this.Country = country;
-            this.SunRise = sunRise;
-            this.SunSet = sunSet;
+            string data = " City = " + CityName +", id = " + CityId
+                + ", "+Country+" \n GeoCoords = [" + CoordLon + ", " + CoordLon +"]";
+            return data;
         }
     }
 }

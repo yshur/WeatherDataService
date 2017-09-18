@@ -7,76 +7,111 @@ using System.Xml.Linq;
 
 namespace WeatherDataService
 {
-    class OpenWeatherDataService : IWeatherDataService
-    {
-        private static OpenWeatherDataService WDS_Instance;
-        private OpenWeatherDataService()
+    public class OpenWeatherDataService : IWeatherDataService
+    { 
+        private static OpenWeatherDataService openWeatherDataService;
+        private OpenWeatherDataService() { }
+        public static OpenWeatherDataService Instance()
         {
-            //SetWeatherData(d);
-
+            if (openWeatherDataService == null)
+                openWeatherDataService = new OpenWeatherDataService();
+            return openWeatherDataService;
         }
-
         public WeatherData GetWeatherData(ref Location location)
         {
-            string api, req;
-            string key = "&mode=xml&appid=8831f24c29c57a97c2f15b8fbb340ef1";
-            if(location.CityName != null)
-            {
-                req = "q=" + location.CityName;
-            }
-            else if(location.CityId != null)
-            {
-                req = "id=" + location.CityId;
-            }
-            else if(location.CoordLat != null && location.CoordLon != null)
-            {
-                req = "lon=" + location.CoordLon + "&lat=" + location.CoordLat;
-            }
-            else
-            {
-                throw new WeatherDataServiceException("location is empty");
-                //SHOULD THROW EXCEPTION
-            }
-            api = "http://api.openweathermap.org/data/2.5/weather?" + req + key;
             try
             {
-                XDocument reader = XDocument.Load(api);
-                reader.Select(p => new
+                WeatherData data = new WeatherData();
+                string api, req;
+                string key = "&mode=xml&units=metric&appid=8831f24c29c57a97c2f15b8fbb340ef1";
+                if (location.CityName != null)
                 {
-                    ref location.CityId = p.Attribute("id").Value,
-                    ref location.CityName = p.Attribute("name").Value,
-                    ref location.CoordLat = p.Attribute("lat").Value,
-                    ref location.CoordLon = p.Attribute("lon").Value,
-                    ref location.Country = p.Attribute("country").Value,
-                    ref location.SunRise = p.Attribute("rise").Value,
-                    ref location.SunSet = p.Attribute("set").Value,
-                
-                    //coord = p.Element("lon")
-                }).ToList().ForEach(p =>
+                    req = "q=" + location.CityName;
+                }
+                else if (location.CityId != 0)
                 {
-                    Console.WriteLine("Id: " + p.id);
-                    Console.WriteLine("Name: " + p.name);
-                });
-                
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception was occured\n" + ex.Message);
-            }
-            WeatherData data = new WeatherData(temperature:32.02, temperatureUnit: "celsius", humidity:100, humidityUnit:"%", pressure: 1023.6, pressureUnit: "hPa",
-                windSpeed:2.6, windName:, cloudsName:"Light breeze", visibility: 10000, lastUpdate: "2017-09-13T16:50:00");
-            return data;
+                    req = "id=" + location.CityId;
+                }
+                else if (location.CoordLat != 0 && location.CoordLon != 0)
+                {
+                    req = "lon=" + location.CoordLon + "&lat=" + location.CoordLat;
+                }
+                else
+                {
+                    throw new WeatherDataServiceException("location is empty");
+                }
 
-        }
-        public static OpenWeatherDataService Instance
-        {
-            get
-            {
-                if (WDS_Instance == null)
-                    WDS_Instance = new OpenWeatherDataService();
-                return WDS_Instance;
-            }
+                api = "http://api.openweathermap.org/data/2.5/weather?" + req + key;
+                XDocument ob1 = XDocument.Load(api);
+             //   Console.WriteLine(ob1);
+                var item = from x in ob1.Descendants("city")
+                           select x.Attribute("id").Value;
+                location.CityId = int.Parse(item.First());
+                item = from x in ob1.Descendants("city")
+                       select x.Attribute("name").Value;
+                location.CityName = item.First();
+                item = from x in ob1.Descendants("country")
+                       select x.Value;
+                location.Country = item.First();
+                item = from x in ob1.Descendants("coord")
+                       select x.Attribute("lon").Value;
+                location.CoordLon = double.Parse(item.First());
+                item = from x in ob1.Descendants("coord")
+                       select x.Attribute("lat").Value;
+                location.CoordLat = double.Parse(item.First());
+                //   Console.WriteLine(location);
 
+                item = from x in ob1.Descendants("sun")
+                       select x.Attribute("rise").Value;
+                data.Sunrise = item.First();
+                item = from x in ob1.Descendants("sun")
+                       select x.Attribute("set").Value;
+                data.Sunset = item.First();
+                item = from x in ob1.Descendants("temperature")
+                       select x.Attribute("value").Value;
+                data.Temperature = double.Parse(item.First());
+                item = from x in ob1.Descendants("temperature")
+                       select x.Attribute("unit").Value;
+                data.TemperatureUnit = item.First();
+                item = from x in ob1.Descendants("humidity")
+                       select x.Attribute("value").Value;
+                data.Humidity = double.Parse(item.First());
+                item = from x in ob1.Descendants("humidity")
+                       select x.Attribute("unit").Value;
+                data.HumidityUnit = item.First();
+                item = from x in ob1.Descendants("pressure")
+                       select x.Attribute("value").Value;
+                data.Pressure = double.Parse(item.First());
+                item = from x in ob1.Descendants("pressure")
+                       select x.Attribute("unit").Value;
+                data.PressureUnit = item.First();
+                item = from x in ob1.Descendants("speed")
+                       select x.Attribute("name").Value;
+                data.Wind = item.First()+", ";
+                item = from x in ob1.Descendants("speed")
+                       select x.Attribute("value").Value;
+                data.Wind += item.First()+" m/s, ";
+                item = from x in ob1.Descendants("direction")
+                       select x.Attribute("name").Value;
+                data.Wind += item.First() + " ( ";
+                item = from x in ob1.Descendants("direction")
+                       select x.Attribute("value").Value;
+                data.Wind += item.First() + " )";
+                item = from x in ob1.Descendants("clouds")
+                       select x.Attribute("name").Value;
+                data.Cloudiness = item.First();
+                item = from x in ob1.Descendants("lastupdate")
+                       select x.Attribute("value").Value;
+                data.LastUpdate = item.First();
+
+               // Console.WriteLine(data);
+                return data;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("OpenWeatherDataService: Exception was occured\n" + ex.Message);
+                throw new WeatherDataServiceException(ex.Message);
+            }
         }
     }
 }
