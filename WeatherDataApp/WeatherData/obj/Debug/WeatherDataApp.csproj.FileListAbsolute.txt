@@ -1,0 +1,10 @@
+C:\Users\yair\source\repos\WeatherDataApp\WeatherData\bin\Debug\WeatherData.exe.config
+C:\Users\yair\source\repos\WeatherDataApp\WeatherData\bin\Debug\WeatherData.exe
+C:\Users\yair\source\repos\WeatherDataApp\WeatherData\bin\Debug\WeatherData.pdb
+C:\Users\yair\source\repos\WeatherDataApp\WeatherData\bin\Debug\WeatherDataService.exe
+C:\Users\yair\source\repos\WeatherDataApp\WeatherData\bin\Debug\WeatherDataService.pdb
+C:\Users\yair\source\repos\WeatherDataApp\WeatherData\bin\Debug\WeatherDataService.exe.config
+C:\Users\yair\source\repos\WeatherDataApp\WeatherData\obj\Debug\WeatherDataApp.csprojResolveAssemblyReference.cache
+C:\Users\yair\source\repos\WeatherDataApp\WeatherData\obj\Debug\WeatherDataApp.csproj.CoreCompileInputs.cache
+C:\Users\yair\source\repos\WeatherDataApp\WeatherData\obj\Debug\WeatherData.exe
+C:\Users\yair\source\repos\WeatherDataApp\WeatherData\obj\Debug\WeatherData.pdb

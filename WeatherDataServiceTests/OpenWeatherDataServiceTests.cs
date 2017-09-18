@@ -8,10 +8,21 @@ using System.Threading.Tasks;
 
 namespace WeatherDataService.Tests
 {
+    /// <summary>
+    /// This is a test class for OpenWeatherDataService
+    /// and is intended to contain a unit test only for 
+    /// GetWeatherData method
+    /// </summary>
     [TestClass()]
     public class OpenWeatherDataServiceTests
     {
 
+        /// <summary>
+        /// This is a unit test GetWeatherData method. 
+        /// it compares between cityId after the executing 
+        /// of this method.
+        /// if they equal the test pass successfully.
+        /// </summary>
         [TestMethod()]
         public void GetWeatherDataTest()
         {

@@ -7,16 +7,42 @@ using System.Xml.Linq;
 
 namespace WeatherDataService
 {
+    /// <summary>
+    /// This class implements IWeatherDataService interface
+    /// and get WeatherData from openWeather website. 
+    /// It implement GetWeatherData method for Get current WeatherData by location.
+    /// </summary>
     public class OpenWeatherDataService : IWeatherDataService
-    { 
+    {
+        /// <summary>
+        /// These three next methods are for implementing singelton pattern
+        /// on this class that implement IWeatherDataService
+        /// </summary>
         private static OpenWeatherDataService openWeatherDataService;
+        /// <summary>
+        /// The constructor is private to prevent creating more than one instances 
+        /// of this class as singelton demands
+        /// </summary>
         private OpenWeatherDataService() { }
+        /// <summary>
+        /// This method returns the static instance
+        /// if it is null this method create the instance by 
+        /// the private constructor
+        /// </summary>
         public static OpenWeatherDataService Instance()
         {
             if (openWeatherDataService == null)
                 openWeatherDataService = new OpenWeatherDataService();
             return openWeatherDataService;
         }
+        /// <summary>
+        /// This method returns WeatherData Object
+        /// and also update location object.
+        /// so location parameter should be reference to original location object. 
+        /// 
+        /// it ask the data from openweathermap website
+        /// and parse the relevant the data from xml response.
+        /// </summary>
         public WeatherData GetWeatherData(ref Location location)
         {
             try

@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace WeatherDataService
 {
+    /// <summary>
+    /// This class is responsible for presenting weather data
+    /// It implement IComparable interface for using in linq with "desendants" method.
+    /// </summary>
     public class WeatherData : IComparable<WeatherData>
-    {   
+    {
+        /// <params>
+        /// These properties refers to the weather data as they show in open website.
+        /// </params>
         public double Temperature { get; set; }
         public string TemperatureUnit { get; set; }
         public string LastUpdate { get; set; }
@@ -23,6 +30,9 @@ namespace WeatherDataService
 
         public WeatherData() { }
 
+        /// <summary>
+        /// This method overrides the ToString for represnting WeatherData Object.
+        /// </summary>
         public override string ToString()
         {
             string data = " Temperature = " + Temperature + ", unit = " + TemperatureUnit + ", "
@@ -35,6 +45,10 @@ namespace WeatherDataService
                 + ", \n Sunset = " + Sunset;
             return data;
         }
+        /// <summary>
+        /// This method compares between two WeatherData Objects by their Temperature field.
+        /// Implementing CompareTo for using in linq with "desendants" method.
+        /// </summary>
         public int CompareTo(WeatherData other)
         {
             return (int)(this.Temperature - other.Temperature);

@@ -1,0 +1,1 @@
+C:\Users\yair\source\repos\WeatherData\WeatherData\obj\Debug\WeatherData.csproj.CoreCompileInputs.cache

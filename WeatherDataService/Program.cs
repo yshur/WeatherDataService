@@ -13,7 +13,10 @@ namespace WeatherDataService
 {
     class Program
     {
-
+        /// <summary>
+        /// This method is the one that we will execute
+        /// when we will want to show the result of this project
+        /// </summary>
         static void Main(string[] args)
         {
             try

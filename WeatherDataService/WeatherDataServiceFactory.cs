@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace WeatherDataService
 {
+    /// <summary>
+    /// This class is responsible for Get WeatherDataService by parameter of map.
+    /// it return WeatherDataService that link to the map parameter.
+    /// if map parameter unknown it throw WeatherDataServiceException.
+    /// </summary>
     public class WeatherDataServiceFactory
     {
         private OpenWeatherDataService openService = OpenWeatherDataService.Instance();
